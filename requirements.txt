@@ -1,0 +1,4 @@
+praw==7.7.1
+redditharbor==0.2.5
+tqdm==4.66.4
+tqdm==4.67.1
