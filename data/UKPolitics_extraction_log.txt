@@ -1,0 +1,26 @@
+
+Extraction Summary — 2025-04-15 16:39:26
+Subreddit Name - ukpolitics
+Keywords Used - ['universal income', 'minimum wage', 'council tax', 'income tax', 'national insurance', 'poverty']
+Limit Set - 10
+
+Total posts collected: 60
+Total top-level comments: 1260
+Total comments including replies: 5853
+Avg top-level comments per post: 21.00
+Avg total comments per post: 97.55
+
+------------------------------------------------------------
+
+Extraction Summary — 2025-04-15 16:41:36
+Subreddit Name - ukpolitics
+Keywords Used - ['"universal income"', '"minimum wage"', '"council tax"', '"income tax"', '"national insurance"', '"poverty"']
+Limit Set - 10
+
+Total posts collected: 53
+Total top-level comments: 627
+Total comments including replies: 3578
+Avg top-level comments per post: 11.83
+Avg total comments per post: 67.51
+
+------------------------------------------------------------
