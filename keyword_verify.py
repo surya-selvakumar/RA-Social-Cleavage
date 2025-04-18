@@ -18,7 +18,7 @@ def verify_keyword_occurence(data):
 
 
 if __name__=='__main__':
-    filename = os.path.join('data', 'ukpolitics_2.json')
+    filename = os.path.join('data', 'ukpolitics_data.json')
     with open(filename, 'r') as json_file:
         data = json.load(json_file)
 
