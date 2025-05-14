@@ -55,6 +55,7 @@ for category in categories:
                 "category": category,
                 "post_id": post.get("id"),
                 "post_url": post.get('url'),
+                "post_title": post.get('title'),
                 "comment_id": comment.get("comment_id"),
                 "comment_url": comment.get("url"),
                 "comment_date": comment.get("date"),

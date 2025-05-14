@@ -43,3 +43,22 @@ Average top comments/post      : 11.98
 Average total comments/post    : 68.38
 
 ------------------------------------------------------------
+
+📊 Extraction Summary — 2025-04-18 12:35:12
+Subreddit Name   : ukpolitics
+Keywords Used    : "universal income", "minimum wage", "council tax", "income tax", "national insurance", "poverty"
+Limit per Keyword: 50
+
+Total posts collected          : 253
+Total top-level comments       : 3368
+Total comments (with replies)  : 21115
+
+Posts with multimedia          : 232
+Posts with links               : 253
+Comments/replies with media    : 48
+Comments/replies with links    : 955
+
+Average top comments/post      : 13.31
+Average total comments/post    : 83.46
+
+------------------------------------------------------------
