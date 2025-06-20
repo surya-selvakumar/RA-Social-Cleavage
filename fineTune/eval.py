@@ -6,14 +6,14 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # Load tokenizer from base model
-# tokenizer = AutoTokenizer.from_pretrained("TinyLlama/TinyLlama-1.1B-Chat-v1.0")
-tokenizer = AutoTokenizer.from_pretrained("google/gemma-3-1b-it")
+tokenizer = AutoTokenizer.from_pretrained("TinyLlama/TinyLlama-1.1B-Chat-v1.0")
+# tokenizer = AutoTokenizer.from_pretrained("deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B")
 
 # Load base model
-# base_model = AutoModelForCausalLM.from_pretrained("TinyLlama/TinyLlama-1.1B-Chat-v1.0")
-base_model = AutoModelForCausalLM.from_pretrained("google/gemma-3-1b-it")
-# model = PeftModel.from_pretrained(base_model, "./finetuned-tinyllama-stance")
-model = PeftModel.from_pretrained(base_model, "./finetuned-gemma-stance")
+base_model = AutoModelForCausalLM.from_pretrained("TinyLlama/TinyLlama-1.1B-Chat-v1.0")
+# base_model = AutoModelForCausalLM.from_pretrained("deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B", torch_dtype=torch.float16)
+model = PeftModel.from_pretrained(base_model, "./finetuned-tinyllama-stance")
+# model = PeftModel.from_pretrained(base_model, "./finetuned-deepseekr1-stance")
 model = model.to("cuda" if torch.cuda.is_available() else "cpu")
 model.eval()
 
@@ -34,12 +34,7 @@ def extract_result(text):
 def generate_output(prompt):
     inputs = tokenizer(prompt, return_tensors="pt", truncation=True, padding=True).to(model.device)
     with torch.no_grad():
-        # outputs = model.generate(**inputs, max_new_tokens=10)
-        outputs = model.base_model.generate(
-            **inputs,
-            max_new_tokens=10,
-            do_sample=False
-        )
+        outputs = model.generate(**inputs, max_new_tokens=10)
     decoded = tokenizer.decode(outputs[0], skip_special_tokens=True)
     return extract_result(decoded.split("Answer:")[-1].strip())
 

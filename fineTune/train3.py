@@ -18,8 +18,8 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 dataset = load_dataset("json", data_files="../data/tenpct_jsn.jsonl", split="train")
 
 # --- 3) MODEL & TOKENIZER ---
-# model_name = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
-model_name = "google/gemma-3-1b-it"
+model_name = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+# model_name = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name).to(device)
 
@@ -64,7 +64,7 @@ dataset = dataset.map(tokenize, remove_columns=dataset.column_names)
 
 # --- 6) TRAINING SETUP ---
 training_args = TrainingArguments(
-    output_dir="./finetuned-gemma-stance",
+    output_dir="./finetuned-tinyllama-stance",
     per_device_train_batch_size=1,
     num_train_epochs=3,
     logging_dir="./logs",
@@ -100,5 +100,5 @@ trainer.train()
 
 
 # --- 9) MANUAL SAVE ---
-trainer.save_model("./finetuned-gemma-stance")  # ✅ Save the model weights
-tokenizer.save_pretrained("./finetuned-gemma-stance")  # ✅ Save tokenizer too
+trainer.save_model("./finetuned-tinyllama-stance")  # ✅ Save the model weights
+tokenizer.save_pretrained("./finetuned-tinyllama-stance")  # ✅ Save tokenizer too

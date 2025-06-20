@@ -1,5 +1,5 @@
 ---
-base_model: google/gemma-3-1b-it
+base_model: TinyLlama/TinyLlama-1.1B-Chat-v1.0
 library_name: peft
 ---
 
