@@ -1,14 +1,22 @@
 from datasets import load_dataset
 from transformers import AutoModelForCausalLM, AutoTokenizer, TrainingArguments, Trainer, DataCollatorForLanguageModeling
 from peft import get_peft_model, LoraConfig, TaskType
+import os
+import torch 
+
+
+os.environ["TRANSFORMERS_NO_TF"] = "1"
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print("Using device:", device)
 
 # Load dataset
 dataset = load_dataset("json", data_files="stance_finetune_data.jsonl", split="train")
 
 # Load tokenizer and model
-model_name = "google/gemma-3-4b-it"
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModelForCausalLM.from_pretrained(model_name)
+model_name = "google/gemma-3-4b-pt"
+tokenizer = AutoTokenizer.from_pretrained(model_name, use_auth_token=True)
+model = AutoModelForCausalLM.from_pretrained(model_name, use_auth_token=True).to(device)
 
 # Apply LoRA config
 lora_config = LoraConfig(
@@ -16,9 +24,10 @@ lora_config = LoraConfig(
     lora_alpha=32,
     task_type=TaskType.CAUSAL_LM,
     lora_dropout=0.1,
-    bias="none"
+    bias="none",
+    target_modules=["q_proj", "k_proj", "v_proj", "o_proj"]
 )
-model = get_peft_model(model, lora_config)
+model = get_peft_model(model, lora_config).to(device)
 
 # Tokenize
 def tokenize(example):
